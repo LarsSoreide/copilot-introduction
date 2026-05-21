@@ -41,12 +41,12 @@ Work through these in order. Each exercise has its own `README.md` with step-by-
 
 | # | Folder | Title | What you'll practise |
 |---|--------|-------|----------------------|
-| 01 | `exercises/01-first-contact/` | First Contact | Inline completions + Copilot Chat basics |
+| 01 | `exercises/Data engineering/01-first-contact/` | First Contact | Inline completions + Copilot Chat basics |
 | 02 | `exercises/Data engineering/02-sql-assistant/` | SQL Assistant | Generate & optimise SQL queries |
-| 03 | `exercises/03-custom-instructions/` | Custom Instructions | Teach Copilot about your project |
-| 04 | `exercises/04-github-features/` | GitHub.com Features | Copilot on pull requests & issues |
-| 05 | `exercises/05-skills/` | Skills & Slash Commands | `/explain`, `/fix`, `/tests`, `@workspace` |
-| 🎁 | `exercises/bonus/` | Agent Mode Pipeline | Open-ended: build an ETL script with Agent Mode |
+| 03 | `exercises/Data engineering/03-custom-instructions/` | Custom Instructions | Teach Copilot about your project |
+| 04 | `exercises/Data engineering/04-github-features/` | GitHub.com Features | Copilot on pull requests & issues |
+| 05 | `exercises/Data engineering/05-skills/` | Skills & Slash Commands | `/explain`, `/fix`, `/tests`, `@workspace` |
+| 🎁 | `exercises/Data engineering/bonus/` | Agent Mode Pipeline | Open-ended: build an ETL script with Agent Mode |
 
 Each exercise takes roughly **10 minutes**. The bonus is open-ended — jump in if you finish early.
 
