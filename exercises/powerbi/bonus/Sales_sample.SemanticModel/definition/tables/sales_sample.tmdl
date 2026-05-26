@@ -1,3 +1,10 @@
+/// ============================================================================
+/// Bonus Exercise - Audit Skill Target Model (INTENTIONALLY MESSY)
+/// ============================================================================
+/// This table includes measures with deliberate best-practice violations (poor naming,
+/// missing error handling, repeated calculations) to give the audit skill something to find.
+/// ============================================================================
+
 table sales_sample
 	lineageTag: 9e92f363-ffbd-415f-bf87-e8be7d3b394b
 
