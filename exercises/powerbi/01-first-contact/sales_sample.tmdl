@@ -51,7 +51,6 @@ table sales_sample
 	/// measure 'Revenue Growth %' = BLANK()
 	///		formatString: 0.00%;-0.00%;0.00%
 	///		lineageTag: 10000000-0000-0000-0000-000000000007
-
 	column order_id
 		dataType: string
 		lineageTag: cf9d68a9-4592-4b45-a491-e7973ab4a5ee

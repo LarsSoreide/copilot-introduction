@@ -10,9 +10,7 @@
 /// 1. Find the bug
 /// 2. Fix it
 /// 3. Commit and create a PR with Copilot's help
-
 table sales_sample
-
 	/// Revenue Growth % Measure - Contains a Bug!
 	/// 
 	/// This measure calculates the percentage change in revenue
