@@ -29,6 +29,6 @@ table sales_sample
 			    )
 			RETURN
 			-- BUG: This division will fail when PreviousRevenue is 0 or BLANK
-			(CurrentRevenue - PreviousRevenue) / PreviousRevenue
+			DIVIDE(CurrentRevenue - PreviousRevenue, PreviousRevenue)
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: 40000000-0000-0000-0000-000000000001
