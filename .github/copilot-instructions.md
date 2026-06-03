@@ -30,6 +30,26 @@ This is a Power BI semantic model and reporting project for sales analysis. It p
 
 
 ## DAX Conventions
+- Always use DIVIDE() instead of / to handle division by zero
+- Use SUMX/AVERAGEX/COUNTX for row-level calculations, SUM/AVERAGE/COUNT for simple aggregations
+- Prefer ISBLANK() over = BLANK() for null checks
+- Use VAR for intermediate calculations to improve readability
+- Always format currency measures with "$#,##0.00"
+- Always format percentage measures with "0.0%"
+
+## Measure Naming
+
+- Prefix aggregations: "Total Sales", "Count Orders"
+- Prefix time intelligence: "YTD Sales", "MTD Orders"
+- Prefix percentages: "% of Total", "% Growth"
+- Use descriptive names: avoid abbreviations unless industry-standard
+
+## Measure Organization
+
+- Group related measures in display folders
+- Put base measures (Total Revenue, Total Quantity) at the root
+- Put time intelligence in "Time Intelligence" folder
+- Put KPIs in "KPIs" folder
 
 ### Error Handling
 - Always use `DIVIDE()` instead of `/` operator to avoid divide-by-zero errors
