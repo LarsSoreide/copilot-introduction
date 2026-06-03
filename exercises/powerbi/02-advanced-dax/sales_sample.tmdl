@@ -12,10 +12,10 @@ table sales_sample
 	/// Revenue per row = quantity * unit_price (converted to number)
 	/// TODO: Use SUMX to iterate over rows
 	measure 'Total Revenue' = 
-		SUMX(
-		    sales_sample,
-		    sales_sample[quantity] * VALUE(sales_sample[unit_price])
-		)
+			SUMX(
+				sales_sample,
+				sales_sample[quantity] * VALUE(sales_sample[unit_price])
+			)
 		formatString: "$"#,0.00
 		lineageTag: 20000000-0000-0000-0000-000000000001
 
