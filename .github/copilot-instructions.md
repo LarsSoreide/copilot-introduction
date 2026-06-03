@@ -64,7 +64,7 @@ This is a Power BI semantic model and reporting project for sales analysis. It p
 
 ### Code Style
 - Use `VAR` to store intermediate calculations and improve readability
-- Write multi-line DAX with proper indentation (4 spaces)
+- Write multi-line DAX with proper indentation (tabs, not spaces) — TMDL requires tab-based indentation
 - Add blank lines between logical sections
 - Include comments for complex logic
 
