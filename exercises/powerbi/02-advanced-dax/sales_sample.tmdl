@@ -10,7 +10,7 @@ table sales_sample
 	/// Challenge 1: Total Revenue with SUMX
 	/// Business requirement: Calculate total revenue across all orders
 	/// Revenue per row = quantity * unit_price (converted to number)
-	/// TODO: Use SUMX to iterate over rows
+	/// TODO: Use SUMX to iterate over rows -- tester dette
 	measure 'Total Revenue' = 
 			SUMX(
 				sales_sample,
