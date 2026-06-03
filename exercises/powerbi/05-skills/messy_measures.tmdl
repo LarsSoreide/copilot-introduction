@@ -8,38 +8,70 @@
 /// - Poor formatting
 /// Use Copilot's slash commands to clean them up!
 /// ============================================================================
-
 table sales_sample
-
+	/// Total Revenue: Returns the total revenue across all transactions (quantity × unit_price)
 	measure rev = [Total Revenue]
 		lineageTag: 50000000-0000-0000-0000-000000000001
 
+	/// Average Order Value: Average revenue per unique order (Total Revenue ÷ Distinct Count of Orders)
 	measure AvgOrdVal = DIVIDE([Total Revenue],DISTINCTCOUNT(sales_sample[order_id]))
 		lineageTag: 50000000-0000-0000-0000-000000000002
 
+	/// Top Product Revenue: Returns the revenue for the single highest-revenue product
 	measure TopProd = CALCULATE([Total Revenue],TOPN(1,ALL(sales_sample[product]),[Total Revenue]))
 		lineageTag: 50000000-0000-0000-0000-000000000003
 
-	measure PctGrowth = VAR c=[Total Revenue] VAR p=CALCULATE([Total Revenue],DATEADD(sales_sample[order_date],-1,MONTH)) RETURN (c-p)/p
+	/// % Revenue Growth: Percentage change in revenue compared to the previous month
+	measure '% Revenue Growth' =
+		VAR CurrentRevenue = [Total Revenue]
+		VAR PreviousRevenue =
+			CALCULATE(
+				[Total Revenue],
+				DATEADD(sales_sample[order_date], -1, MONTH)
+			)
+		RETURN
+			DIVIDE(CurrentRevenue - PreviousRevenue, PreviousRevenue, 0)
+		formatString: "0.0%"
+		displayFolder: KPIs
 		lineageTag: 50000000-0000-0000-0000-000000000004
 
+	/// Customer Revenue: Calculates total revenue iterated per customer, respecting the current filter context
 	measure CustomerRev = SUMX(VALUES(sales_sample[customer_id]),CALCULATE([Total Revenue]))
 		lineageTag: 50000000-0000-0000-0000-000000000005
 
-	/// This measure has a bug - can you find it?
-	measure 'QtyPerOrder' = SUM(sales_sample[quantity])/COUNT(sales_sample[order_id])
+	/// Quantity per Order: Average number of items per unique order (Total Quantity ÷ Distinct Count of Orders)
+	measure 'Quantity per Order' = 
+		DIVIDE(
+		    SUM(sales_sample[quantity]),
+		    DISTINCTCOUNT(sales_sample[order_id]),
+		    0
+		)
+		formatString: "#,##0.00"
 		lineageTag: 50000000-0000-0000-0000-000000000006
 
+	/// North Region Revenue: Total revenue filtered to the North region only, overriding any region filter context in the report
 	measure NorthSales = CALCULATE([Total Revenue],sales_sample[region]="North")
+		formatString: "$#,##0.00"
 		lineageTag: 50000000-0000-0000-0000-000000000007
 
-	/// What does this measure even do?
+	/// Adjusted Revenue: Applies a 10% uplift to revenue when the North region is selected; otherwise returns standard revenue
 	measure X = IF(SELECTEDVALUE(sales_sample[region])="North",[Total Revenue]*1.1,[Total Revenue])
 		lineageTag: 50000000-0000-0000-0000-000000000008
 
+	/// Category Revenue: Calculates total revenue iterated per product category, respecting the current filter context
 	measure cat_rev = SUMX(VALUES(sales_sample[category]),[Total Revenue])
 		lineageTag: 50000000-0000-0000-0000-000000000009
 
-	/// Another potential issue here
-	measure GrowthPct = ([Total Revenue]-CALCULATE([Total Revenue],DATEADD(sales_sample[order_date],-1,YEAR)))/CALCULATE([Total Revenue],DATEADD(sales_sample[order_date],-1,YEAR))
+	/// % Revenue Growth YoY: Percentage change in revenue compared to the same period last year
+	measure '% Revenue Growth YoY' =
+		VAR CurrentRevenue = [Total Revenue]
+		VAR PreviousYearRevenue =
+			CALCULATE(
+				[Total Revenue],
+				DATEADD(sales_sample[order_date], -1, YEAR)
+			)
+		RETURN
+			DIVIDE(CurrentRevenue - PreviousYearRevenue, PreviousYearRevenue, 0)
+		formatString: "0.0%"
+		displayFolder: KPIs
 		lineageTag: 50000000-0000-0000-0000-000000000010
